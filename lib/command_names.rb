@@ -19,4 +19,9 @@ module CommandNames
     end
 
   end
+
+  def self.generate_prototype_id
+    "#{rand(65..90).chr}#{rand(65..90).chr}-#{rand(200..1999) * 5}"
+  end
+
 end

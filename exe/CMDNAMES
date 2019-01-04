@@ -38,7 +38,7 @@ words = CommandNames::WordList.new
 
 # TODO(feature): Add (3 + 5) format
 # TODO(feature): Add a mixed format
-# TODO(refactor): Replace string formats functions in module
+# TODO(refactor): Move to module functions
 
 case opts[:format].upcase
 when 'LEN8'
@@ -54,7 +54,7 @@ when 'LEN4'
            .sort
 when 'ID'
   opts[:count].times do
-    puts "#{rand(65..90).chr}#{rand(65..90).chr}-#{rand(200..1999) * 5}"
+    puts CommandNames.generate_prototype_id
   end
 else
   puts 'Unknown format. See --help for more info.'
