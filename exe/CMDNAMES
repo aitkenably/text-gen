@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+
+require 'command_names'
+require 'slop'
+
+# TODO(feature): Add support for generating names with a given prefix or suffix
+# TODO(bug): Handle errors from slop
+# TODO(feature): Add color for errors
+
+opts = Slop.parse do |o|
+  o.integer '-c', '--count',
+            'number of names to generate (default: 10)',
+            default: 10
+  o.string  '-f', '--format',
+            'format of names to generate. See --help for more info',
+            default: 'LEN8'
+  o.bool    '-h', '--help',
+            'print help and exit'
+
+  o.on      '-v', '--version', 'print version and exit' do
+    puts "CMDNAMES v#{CommandNames::VERSION}"
+    exit
+  end
+end
+
+if opts.help?
+  puts opts
+  puts ''
+  puts 'Format options:'
+  puts '  LEN8  words of length 8. Default.'
+  puts '  LEN4  combination of two words of length 4.'
+  puts '    ID  an identifier of the form: <LETTER><LETTER>-<NUMBER>'
+  puts '        where number is four digits and divisible by 5.'
+  exit
+end
+
+words = CommandNames::WordList.new
+
+# TODO(feature): Add (3 + 5) format
+# TODO(feature): Add a mixed format
+# TODO(refactor): Replace string formats functions in module
+
+case opts[:format].upcase
+when 'LEN8'
+  puts words.with_length(8).sample(opts[:count])
+           .map(&:upcase)
+           .sort
+when 'LEN4'
+  puts words.with_length(4)
+           .sample(opts[:count] * 2)
+           .each_slice(2)
+           .map(&:join)
+           .map(&:upcase)
+           .sort
+when 'ID'
+  opts[:count].times do
+    puts "#{rand(65..90).chr}#{rand(65..90).chr}-#{rand(200..1999) * 5}"
+  end
+else
+  puts 'Unknown format. See --help for more info.'
+end
