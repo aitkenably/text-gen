@@ -3,8 +3,7 @@ require 'string'
 
 module CommandNames
 
-  # TODO(refactor): Rename class
-  class WordList
+  class ScowlWordList
 
     def initialize
       @words = []
@@ -20,8 +19,24 @@ module CommandNames
 
   end
 
-  def self.generate_prototype_id
-    "#{rand(65..90).chr}#{rand(65..90).chr}-#{rand(200..1999) * 5}"
+  def self.rand_command_name(cnt = 1)
+    words = CommandNames::ScowlWordList.new
+
+    values = words.with_length(8).sample(cnt)
+                  .map(&:upcase)
+                  .sort
+
+    values.length == 1 ? values[0] : values
+  end
+
+  def self.rand_prototype_id(cnt = 1)
+    values = []
+
+    (1..cnt).each do
+      values.push "#{rand(65..90).chr}#{rand(65..90).chr}-#{rand(200..1999) * 5}"
+    end
+
+    values.length == 1 ? values[0] : values
   end
 
 end

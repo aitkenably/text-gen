@@ -3,18 +3,17 @@
 require 'command_names'
 require 'slop'
 
-# TODO(feature): Add support for generating names with a given prefix or suffix
 # TODO(bug): Handle errors from slop
 # TODO(feature): Add color for errors
 
 opts = Slop.parse do |o|
   o.integer '-c', '--count',
-            'number of names to generate (default: 5)',
+            'number of ids to generate (default: 5)',
             default: 5
   o.bool    '-h', '--help',
             'print help and exit'
   o.on      '-v', '--version', 'print version and exit' do
-    puts "CMDNAMES v#{CommandNames::VERSION}"
+    puts "PROTOIDS v#{CommandNames::VERSION}"
     exit
   end
 end
@@ -24,4 +23,4 @@ if opts.help?
   exit
 end
 
-puts CommandNames.rand_command_name opts[:count]
+puts CommandNames.rand_prototype_id opts[:count]
