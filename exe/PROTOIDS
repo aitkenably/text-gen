@@ -4,6 +4,8 @@ require 'command_names'
 require 'slop'
 
 # TODO(feature): Add color for errors
+# TODO(feature): Create better usage reporting
+# TODO(feature): Create man page
 
 begin
   opts = Slop.parse do |o|

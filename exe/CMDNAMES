@@ -3,14 +3,20 @@
 require 'command_names'
 require 'slop'
 
-# TODO(feature): Add support for generating names with a given prefix or suffix
+# TODO(feature): Add support for generating names with a given suffix
+# TODO(feature): Add ability to return *all* names satisfying request
+# TODO(feature): Add different-sized Scowl lists (separate gem?)
+
 # TODO(feature): Add color for errors
+# TODO(feature): Write better usage reporting
+# TODO(feature): Write man page
 
 begin
   opts = Slop.parse do |o|
     o.integer '-c', '--count',
               'number of names to generate (default: 5)',
               default: 5
+    o.string  '-p', '--prefix'
     o.bool    '-h', '--help',
               'print help and exit'
     o.on      '-v', '--version', 'print version and exit' do
@@ -29,4 +35,4 @@ if opts.help?
   exit
 end
 
-puts CommandNames.rand_command_name opts[:count]
+puts CommandNames.rand_command_name(opts[:count], opts[:prefix])

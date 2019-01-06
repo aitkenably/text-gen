@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    command_names (0.2.0)
+    command_names (0.3.0)
       slop (~> 4.0)
 
 GEM

@@ -3,30 +3,26 @@ require 'string'
 
 module CommandNames
 
-  class ScowlWordList
+  # TODO(feature): Add function to appreviate by dropping vowels
 
-    def initialize
-      @words = []
-      word_file = File.join(File.dirname(__FILE__), '../resources/words.txt')
-      File.foreach(word_file) do |line|
-        line.exclude?("'") && @words.push(line.chomp)
-      end
+  # TODO(refactor): Change to named parameters?
+  def self.rand_command_name(cnt = 1, prefix = nil)
+    words = []
+
+    # TODO(refactor): Move to separate method
+    word_file = File.join(File.dirname(__FILE__), '../resources/words.txt')
+    File.foreach(word_file) do |line|
+      line.exclude?("'") && words.push(line.chomp)
     end
 
-    def with_length(len)
-      @words.select { |w| w.length == len }
-    end
+    words = words.select! { |w| w.length == 8 }
 
-  end
+    # TODO(refactor): Move to common library (case insensitive start_with?)
+    prefix.nil? || words.select! { |w| w.upcase.start_with? prefix.upcase }
+    results = words.sample(cnt).map(&:upcase).sort
 
-  def self.rand_command_name(cnt = 1)
-    words = CommandNames::ScowlWordList.new
-
-    values = words.with_length(8).sample(cnt)
-                  .map(&:upcase)
-                  .sort
-
-    values.length == 1 ? values[0] : values
+    # TODO(refactor): Move to common library (i.e array.simplify)
+    results.length == 1 ? results[0] : results
   end
 
   def self.rand_prototype_id(cnt = 1)
