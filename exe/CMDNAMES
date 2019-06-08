@@ -3,14 +3,6 @@
 require 'text-gen'
 require 'slop'
 
-# TODO(feature): Add support for generating names with a given suffix
-# TODO(feature): Add ability to return *all* names satisfying request
-# TODO(feature): Add different-sized Scowl lists (separate gem?)
-
-# TODO(feature): Add color for errors
-# TODO(feature): Write better usage reporting
-# TODO(feature): Write man page
-
 begin
   opts = Slop.parse do |o|
     o.integer '-c', '--count',
