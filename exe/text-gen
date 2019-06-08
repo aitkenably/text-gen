@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require 'text-gen'
+
+class TextGenCLI < Thor
+    class_option :count, :aliases => "-c", :type => :numeric, 
+        :default => 1, :desc => "Number to generate"
+
+    # TextGen.rand_command_name(opts[:count], opts[:prefix])
+    desc "cmdname", "Generate 8-letter command names"
+    method_option :prefix, :aliases => "-p", :type => :string, 
+        :desc => "Prefix for command names"
+    def cmdname()
+        puts TextGen.rand_command_name options[:count], options[:prefix]
+    end
+
+    desc "prototype", "Generate codenames for prototypes"
+    def prototype()
+        puts TextGen.rand_prototype_id options[:count]
+    end
+end
+
+TextGenCLI.start
