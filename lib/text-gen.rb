@@ -1,7 +1,7 @@
-require 'command_names/version'
+require 'text-gen/version'
 require 'string'
 
-module CommandNames
+module TextGen
 
   # TODO(feature): Add function to appreviate by dropping vowels
 

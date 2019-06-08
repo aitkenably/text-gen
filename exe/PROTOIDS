@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'command_names'
+require 'text-gen'
 require 'slop'
 
 # TODO(feature): Add color for errors
@@ -15,7 +15,7 @@ begin
     o.bool    '-h', '--help',
               'print help and exit'
     o.on      '-v', '--version', 'print version and exit' do
-      puts "PROTOIDS v#{CommandNames::VERSION}"
+      puts "PROTOIDS v#{TextGen::VERSION}"
       exit
     end
   end
@@ -30,4 +30,4 @@ if opts.help?
   exit
 end
 
-puts CommandNames.rand_prototype_id opts[:count]
+puts TextGen.rand_prototype_id opts[:count]

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'command_names'
+require 'text-gen'
 require 'slop'
 
 # TODO(feature): Add support for generating names with a given suffix
@@ -20,7 +20,7 @@ begin
     o.bool    '-h', '--help',
               'print help and exit'
     o.on      '-v', '--version', 'print version and exit' do
-      puts "CMDNAMES v#{CommandNames::VERSION}"
+      puts "CMDNAMES v#{TextGen::VERSION}"
       exit
     end
   end
@@ -35,4 +35,4 @@ if opts.help?
   exit
 end
 
-puts CommandNames.rand_command_name(opts[:count], opts[:prefix])
+puts TextGen.rand_command_name(opts[:count], opts[:prefix])
