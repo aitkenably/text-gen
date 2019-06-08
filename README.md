@@ -1,22 +1,34 @@
 # Text Gen
 
-Text Gen is a small Ruby Gem providing a collection of scripts to generate 
+*"There are only two hard things in Computer Science: cache invalidation and naming things."*
+
+Text Gen is a small Ruby Gem providing a collection of functions to generate 
 various fun pieces of text. 
 
 ## Usage
 
-Current commands include:
+### Command Names 
+`text-gen cmdname` generates 80's-style names for computer programs by selecting 8-letter English words from a dictionary.
 
 ```bash
-% PROTOIDS -c 2
-ON-3005
-WA-6695
+$ text-gen cmdname -c 5         
+CHIPMUNK
+FORCIBLE
+ORGANIST
+PICKLING
+UNEASIER
 ```
 
+### Prototype Codenames
+`text-gen prototype` will generate prototype ids, which are skunkworks-style codenames for your secret projects. Codenames are two capital letters, a dash, and a four-digit number divisible by 5. 
+  
 ```bash
-% CMDNAMES -c 2
-CRUSTIER
-OVERJOYS
+$ text-gen prototype -c 5
+IQ-5800
+EI-5140
+DT-6280
+AU-2605
+GW-4605
 ```
 
 ## Development
